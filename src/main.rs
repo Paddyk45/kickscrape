@@ -60,8 +60,7 @@ async fn scraper(offset: usize, size: usize) {
             );
         }
         let search_json = json!({"searches": searches});
-        let mut ok = false;
-        while !ok {
+        loop {
             let res = match c
                 .post(MULTI_SEARCH)
                 .local_address(random_ipv6())
@@ -94,6 +93,7 @@ async fn scraper(offset: usize, size: usize) {
             let Ok(j) = res.json::<serde_json::Value>().await else {
                 continue;
             };
+            
             for result in j["results"].as_array().unwrap() {
                 for hit in result["hits"].as_array().unwrap() {
                     let id = hit["document"]["id"].as_str().unwrap_or_default();
@@ -102,7 +102,7 @@ async fn scraper(offset: usize, size: usize) {
                     println!("{id},{slug},{username}")
                 }
             }
-            ok = true;
+            break;
         }
     }
 }
