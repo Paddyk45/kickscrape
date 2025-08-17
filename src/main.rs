@@ -1,12 +1,10 @@
 #![feature(iter_next_chunk)]
 
-#![warn(clippy::nursery)]
-
-use std::net::{IpAddr, Ipv6Addr};
-use std::str::FromStr;
 use rquest::StatusCode;
 use rquest_util::Emulation;
 use serde_json::json;
+use std::net::{IpAddr, Ipv6Addr};
+use std::str::FromStr;
 use std::time::Duration;
 
 // follow first three steps of https://github.com/zu1k/http-proxy-ipv6-pool
