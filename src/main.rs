@@ -38,8 +38,8 @@ async fn main() {
     }
 }
 
-const MAX_PER_SEARCH: usize = 1;
-const MAX_SEARCHES: usize = 100;
+const MAX_PER_SEARCH: usize = 50;
+const MAX_SEARCHES: usize = 50;
 const PER_REQUEST: usize = MAX_PER_SEARCH * MAX_SEARCHES;
 async fn scraper(offset: usize, size: usize) {
     let mut c = rquest::ClientBuilder::new()
